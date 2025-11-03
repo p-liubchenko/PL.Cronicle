@@ -21,23 +21,23 @@ namespace PL.Cronicle
                 using var linkedCts = CancellationTokenSource.CreateLinkedTokenSource(CronicleShutdown.Token, cancellationToken);
                 await work(reporter, linkedCts.Token).ConfigureAwait(false);
 
-                reporter.ReportProgress(100);
+                reporter.ReportProgress(1.0);
                 reporter.ReportStatus("complete");
-                reporter.ReportComplete(success: true);
+                reporter.ReportComplete(code: 0);
                 return 0;
             }
             catch (OperationCanceledException)
             {
                 reporter.ReportStatus("canceled");
                 reporter.ReportError("Operation canceled");
-                reporter.ReportComplete(success: false, status: "canceled", code: 130);
+                reporter.ReportComplete(code: 130, description: "Operation canceled");
                 return 130; // common termination code for SIGINT
             }
             catch (Exception ex)
             {
                 reporter.ReportStatus("error");
                 reporter.ReportError(ex.Message);
-                reporter.ReportComplete(success: false, status: ex.GetType().Name, code: 1);
+                reporter.ReportComplete(code: 1, description: ex.Message);
                 return 1;
             }
         }
