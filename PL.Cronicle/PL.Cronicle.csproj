@@ -4,6 +4,39 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Nullable>enable</Nullable>
     <LangVersion>8.0</LangVersion>
+
+    <!-- NuGet package metadata -->
+    <IsPackable>true</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>PL.Cronicle</PackageId>
+    <Title>PL.Cronicle</Title>
+    <Version>0.1.0</Version>
+    <Authors>p-liubchenko</Authors>
+    <Company></Company>
+    <Description>Lightweight helper to emit Cronicle-compatible JSON control messages (progress, completion, tables, HTML, labels) without external JSON dependencies. Targets .NET Standard 2.1.</Description>
+    <PackageTags>cronicle;cron;job;progress;reporting;json</PackageTags>
+    <RepositoryUrl>https://github.com/p-liubchenko/PL.Cronicle</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/p-liubchenko/PL.Cronicle</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <!-- Build and determinism -->
+    <Deterministic>true</Deterministic>
+    <DebugType>portable</DebugType>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
+  </ItemGroup>
 
 </Project>
